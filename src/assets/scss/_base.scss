@@ -1,0 +1,116 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+html {
+  // 取代舊站的 jQuery $('html,body').animate({scrollTop:...}, 800)
+  // 原生 smooth scroll 不需要 JS，而且 _reset.scss 裡的
+  // prefers-reduced-motion 會自動關掉它
+  scroll-behavior: smooth;
+}
+
+// lightbox 開啟時鎖住背景頁面
+//
+// 刻意不用 scrollbar-gutter:stable 來避免版面橫移。
+// 那個屬性會永久保留捲軸槽，而「排版視口」因此變窄 ——
+// position:fixed 是以排版視口為基準，所以 lightbox 會蓋不到
+// 最右邊那條槽，露出一條縫。
+//
+// 改成鎖定時給 body 補上等寬的 padding，捲軸消失但內容不位移。
+// 固定導覽列雖然會跟著展開，但它完全被 lightbox 蓋住，看不出來。
+html.is-scroll-locked {
+  overflow: hidden;
+
+  body {
+    padding-right: var(--scrollbar-width, 0px);
+  }
+}
+
+:root {
+  // 捲動量，由 useScrollVar() 每個 frame 更新。
+  // 所有視差效果都從這個值用 calc() 推導出來。
+  --scroll-y: 0px;
+}
+
+body {
+  background-color: v.$color-bg;
+  color: v.$color-text;
+  font-family: v.$font-sans;
+  font-size: v.$fs-body;
+  line-height: normal;
+  overflow-x: hidden;
+}
+
+// 星空背景（視差）
+//
+// 舊站是把圖貼在 body 上用 background-attachment:fixed，再用 JS 改
+// background-position。問題是 iOS Safari 對 fixed 背景的處理是依「文件
+// 高度」而不是視窗來計算，圖會被拉伸且捲動時會跳。
+// 改成獨立的 fixed 圖層，行為一致且不需要 background-attachment。
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  background-image: url('../img/main-bg.jpg');
+  background-repeat: no-repeat;
+  // 背景以捲動量的一半往上移（沿用舊站 parallax('50%', 0.5) 的係數）
+  background-position: 50% calc(var(--scroll-y) * -0.5);
+  pointer-events: none;
+
+  @include m.tablet-down {
+    background-image: url('../img/main-bg-mobile.jpg');
+  }
+}
+
+p {
+  font-size: v.$fs-body;
+  line-height: v.$lh-body;
+  @include m.body-glow;
+
+  @include m.tablet-down {
+    max-width: 580px;
+    margin-inline: auto;
+    padding: 0 32px 25px;
+    text-align: center;
+
+    // 桌機的手動斷行在窄螢幕會斷在奇怪的位置
+    br {
+      display: none;
+    }
+  }
+
+  @include m.mobile-down {
+    max-width: 380px;
+    padding: 0 18px 20px;
+  }
+}
+
+::placeholder {
+  color: v.$color-placeholder;
+  opacity: 1;
+}
+
+.visually-hidden {
+  @include m.visually-hidden;
+}
+
+// 跳過導覽直接到主要內容。
+// 只有鍵盤使用者 focus 到它時才會從上方滑出來。
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  z-index: v.$z-lightbox + 1;
+  padding: 10px 18px;
+  background: v.$color-nav-item-active;
+  border-bottom-left-radius: v.$radius;
+  border-bottom-right-radius: v.$radius;
+  color: v.$color-nav-item-active-text;
+  font-size: v.$fs-nav;
+  transform: translate(-50%, -100%);
+  transition: transform 0.15s ease;
+
+  &:focus {
+    transform: translate(-50%, 0);
+  }
+}

@@ -1,0 +1,127 @@
+// =============================================================
+// 設計變數
+// 數值全部來自舊站 個人網站/css/default.css，只是從散落各處
+// 收攏成具名變數，視覺結果不變。
+// =============================================================
+
+// -------------------------------------------------------------
+// 色彩
+// -------------------------------------------------------------
+$color-bg: #050e21; // 頁面底色（搭配 main-bg.jpg）
+$color-text: #fff;
+
+// 標題發光
+$color-glow-outer: #60b6ff;
+$color-glow-inner: #2a77b8;
+
+// 內文發光（深色描邊，讓白字在亮背景上仍可讀）
+$color-text-shadow: #090e20;
+
+$color-accent: #36a6ff; // intro 副標
+
+// 作品分類磚
+$color-tile: #006eaa;
+$color-tile-hover: #008dda;
+
+// 聯絡資訊大字
+$color-contact: #74d6ff;
+$color-contact-hover: #d2f8ff;
+
+// 表單
+$color-input-bg: #e6e6e6;
+$color-input-shadow: #c2c2c2;
+$color-placeholder: #7c7c7c;
+$color-submit: #0056af;
+$color-error: #ffdf00;
+
+// 導覽列
+$color-nav-bg: rgba(29, 36, 54, 0.6);
+$color-nav-border: #000;
+$color-nav-item: #00345e;
+$color-nav-item-text: #b1cdff;
+$color-nav-item-hover: #225b8a;
+$color-nav-item-active: #65baff;
+$color-nav-item-active-text: #040a18;
+$color-nav-tag: #47769d;
+$color-nav-tag-hover: #6aace4;
+// 氣泡提示底色，取樣自舊站的 tip_bg.png
+$color-tooltip: #3a94d7;
+
+// -------------------------------------------------------------
+// 字型
+// -------------------------------------------------------------
+$font-sans: 'Microsoft JhengHei', '微軟正黑體', 'Noto Sans TC', arial,
+  sans-serif;
+$font-display: 'Days', 'Trebuchet MS', arial, sans-serif; // 四個英文大標題
+$font-contact: 'Trebuchet MS', arial, Helvetica, sans-serif; // 電話/信箱大字
+
+// 字級（桌機 / ≤960 / ≤480）
+$fs-title: 73px;
+$fs-title-tablet: 58px;
+$fs-title-mobile: 40px;
+
+$fs-body: 14px;
+$lh-body: 24px;
+
+$fs-lead: 34px;
+$fs-lead-tablet: 40px;
+$fs-lead-mobile: 27px;
+
+$fs-lead-sub: 18px;
+$fs-lead-sub-tablet: 21px;
+$fs-lead-sub-mobile: 15px;
+
+$fs-contact: 30px;
+$fs-contact-mobile: 19px;
+
+$fs-nav: 15px;
+$fs-nav-mobile: 13px;
+$fs-nav-tag: 14px;
+$fs-tooltip: 13px;
+
+$fs-input: 15px;
+$fs-submit: 17px;
+
+// -------------------------------------------------------------
+// 版面
+// -------------------------------------------------------------
+$container: 980px;
+$nav-height: 53px;
+$radius: 6px;
+
+// 分類磚（依 參考資源/my-projects.png 量測：180x140 縮圖 + 標籤條，間距 20px）
+$tile-width: 180px;
+$tile-thumb-height: 140px;
+$tile-gap: 20px;
+
+// lightbox 預覽圖（180x140 等比縮到 93x72；手機 70x54 同比例）
+$lb-thumb-width: 93px;
+$lb-thumb-height: 72px;
+$lb-thumb-width-mobile: 70px;
+$lb-thumb-height-mobile: 54px;
+
+// lightbox 大圖四周留白
+$lb-pad: 40px; // PC 四邊
+$lb-pad-mobile-y: 20vw; // 手機上方
+$lb-pad-mobile-x: 10vw; // 手機左右「每側」，大圖可用寬度 80vw
+
+// lightbox 色彩
+$color-lb-backdrop: rgba(10, 10, 14, 0.94);
+$color-lb-bar: rgba(16, 16, 20, 0.92);
+$color-lb-close: #e01b24;
+$color-lb-caption: #dadada;
+
+// -------------------------------------------------------------
+// RWD 斷點（沿用舊站的兩個斷點）
+// -------------------------------------------------------------
+$bp-tablet: 960px;
+$bp-mobile: 480px;
+
+// -------------------------------------------------------------
+// 層級
+// -------------------------------------------------------------
+$z-meteor-back: -2;
+$z-meteor-front: -1;
+$z-content: 10;
+$z-nav: 11;
+$z-lightbox: 100;

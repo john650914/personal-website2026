@@ -1,0 +1,20 @@
+// =============================================================
+// 標題字型
+//
+// 舊站的寫法是壞的：
+//   @font-face{font-family:"days"; src:url(Days.eot);
+//              src:url(Days.otf), url(Days.eot?iefix) format('opentype');}
+// 兩個 src（後者覆蓋前者）、format 標在 .eot 上、沒有 woff2，
+// 等於每個瀏覽器都在猜要載哪個檔。
+//
+// 新版只提供 woff2（所有現代瀏覽器都支援），加上 font-display:swap
+// 避免字型載入時文字空白。
+// =============================================================
+
+@font-face {
+  font-family: 'Days';
+  src: url('../fonts/days.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

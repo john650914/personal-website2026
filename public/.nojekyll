@@ -1,0 +1,5 @@
+GitHub Pages 預設會用 Jekyll 處理上傳的內容，而 Jekyll 會忽略所有
+以底線或點開頭的檔案與資料夾。這個空檔案的存在就是在告訴 Pages
+「跳過 Jekyll，原樣提供靜態檔案」。
+
+放在 public/ 底下，Vite build 時會自動複製到 dist/ 根目錄。

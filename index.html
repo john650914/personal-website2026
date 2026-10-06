@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>張復漢的個人網站</title>
+    <meta
+      name="description"
+      content="我的專長為前端網頁開發、視覺設計，擅長溝通協調及工作管理。"
+    />
+    <meta name="theme-color" content="#050e21" />
+
+    <!--
+      OG 標籤的網址「必須是絕對網址」—— Facebook / LINE 的爬蟲不會
+      依照頁面位置去解析相對路徑。頁面本身走相對路徑（vite base: './'），
+      只有這裡例外。
+
+      下面兩個網址假設部署在 user site（repo 名稱為 john650914.github.io）。
+      若改成部署在專案 repo，兩者都要多一層 repo 名稱，例如
+      https://john650914.github.io/<repo>/images/og_img.jpg
+    -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://john650914.github.io/" />
+    <meta property="og:title" content="張復漢的個人網站" />
+    <meta
+      property="og:description"
+      content="我的專長為前端網頁開發、視覺設計，擅長溝通協調及工作管理。"
+    />
+    <meta
+      property="og:image"
+      content="https://john650914.github.io/images/og_img.jpg"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

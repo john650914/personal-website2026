@@ -1,0 +1,83 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+// =============================================================
+// 區塊版面
+//
+// 四個 section 的 padding 集中在這裡，不放在各自的 SFC 裡。
+// 原因：舊站是用 @media 裡的 !important 去壓每個 section 自己的
+// padding，而 !important 的根因是「覆蓋規則的來源順序無法保證」。
+// 把 modifier 和 RWD 覆蓋寫在同一個檔案、靠來源順序決勝，
+// 就完全不需要 !important。
+// =============================================================
+
+.section {
+  position: relative;
+  max-width: v.$container;
+  margin-inline: auto;
+  scroll-margin-top: v.$nav-height; // 錨點跳轉時不被固定導覽遮住
+}
+
+.section--intro {
+  padding: 156px 0 440px;
+}
+
+.section--works {
+  // 放寬到滿版，讓隕石背景可以超出 980px
+  max-width: none;
+  padding: 80px 0 300px;
+}
+
+.section--skill {
+  padding: 80px 0 200px;
+}
+
+.section--contact {
+  padding: 80px 0 100px;
+}
+
+// --- RWD 覆蓋：寫在 modifier 之後，靠來源順序勝出 ---
+@include m.tablet-down {
+  .section {
+    padding: 150px 0 140px;
+  }
+}
+
+@include m.mobile-down {
+  .section {
+    padding: 80px 0 20px;
+  }
+}
+
+// 滿版 section 內部的 980px 容器
+.section__inner {
+  position: relative;
+  @include m.container;
+}
+
+// =============================================================
+// 四個英文大標題
+// 舊站是用 h2:after{content:"#Hello World"} 生出來的，
+// 文字不可選取、不可索引、翻譯工具也讀不到。
+// 新版寫成真實文字（中文標題用 visually-hidden 提供給輔助技術）。
+// =============================================================
+.section-title {
+  font-family: v.$font-display;
+  font-size: v.$fs-title;
+  @include m.title-glow;
+
+  @include m.tablet-down {
+    font-size: v.$fs-title-tablet;
+    text-align: center;
+    text-shadow: none;
+  }
+
+  @include m.mobile-down {
+    font-size: v.$fs-title-mobile;
+  }
+}
+
+// 置中的標題（works / skill）
+.section-title--center {
+  text-align: center;
+}

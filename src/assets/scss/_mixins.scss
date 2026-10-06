@@ -1,0 +1,80 @@
+@use 'variables' as v;
+
+// -------------------------------------------------------------
+// 斷點
+// 取代舊站散落 50 幾處的 @media(max-width:960px) / 480px
+// -------------------------------------------------------------
+@mixin tablet-down {
+  @media (max-width: v.$bp-tablet) {
+    @content;
+  }
+}
+
+@mixin mobile-down {
+  @media (max-width: v.$bp-mobile) {
+    @content;
+  }
+}
+
+// -------------------------------------------------------------
+// 視覺隱藏但保留語意
+// 取代舊站的 h1{display:none}、h2 span{display:none}、
+// text-indent:-9999px —— 那些做法螢幕閱讀器與搜尋引擎都讀不到，
+// 或是會產生超寬的隱形區塊。
+// -------------------------------------------------------------
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+// 解除 visually-hidden（給「桌機用圖示、手機顯示文字」這種切換用）
+@mixin visually-shown {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip-path: none;
+  white-space: normal;
+}
+
+// -------------------------------------------------------------
+// 文字發光
+// -------------------------------------------------------------
+@mixin title-glow {
+  text-shadow:
+    0 0 20px v.$color-glow-outer,
+    0 0 20px v.$color-glow-inner;
+}
+
+@mixin body-glow($spread: 8px) {
+  text-shadow:
+    0 0 $spread v.$color-text-shadow,
+    0 0 $spread v.$color-text-shadow;
+}
+
+// -------------------------------------------------------------
+// 置中容器
+// -------------------------------------------------------------
+@mixin container {
+  max-width: v.$container;
+  margin-inline: auto;
+}
+
+// -------------------------------------------------------------
+// 以圖片取代文字的小圖示
+// -------------------------------------------------------------
+@mixin icon($url, $w, $h) {
+  display: inline-block;
+  width: $w;
+  height: $h;
+  background: url($url) no-repeat 0 0;
+  background-size: $w $h;
+}

@@ -1,0 +1,5 @@
+// 全域樣式入口。元件自己的樣式寫在各自的 SFC <style scoped> 裡。
+@use 'reset';
+@use 'fonts';
+@use 'base';
+@use 'layout';

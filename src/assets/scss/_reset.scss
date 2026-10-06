@@ -1,0 +1,100 @@
+// =============================================================
+// 現代 reset
+// 刻意不沿用舊站的 *{...} 萬用 reset：
+//   - 舊站把 font-family 寫在 * 裡，造成無法局部覆寫
+//   - 舊站的 outline:none 會讓鍵盤使用者完全看不到焦點
+// =============================================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd,
+ul,
+ol {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+  border: 0;
+}
+
+button {
+  background: none;
+  cursor: pointer;
+}
+
+textarea {
+  resize: none;
+}
+
+// 只在鍵盤操作時顯示焦點框，滑鼠點擊不顯示
+:focus-visible {
+  outline: 2px solid #65baff;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  // 載入指示器例外：它傳達的是「系統正在處理中」這個狀態，
+  // 不是裝飾性動畫。停住的轉圈圈會讓人以為卡死了。
+  .allow-motion {
+    animation-duration: 0.8s !important;
+    animation-iteration-count: infinite !important;
+  }
+}
